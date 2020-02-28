@@ -1,0 +1,15 @@
+[ignore]
+.*/node_modules/.*\.json$
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
+
+[untyped]
+; .*/node_modules/*

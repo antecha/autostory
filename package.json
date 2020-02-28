@@ -1,0 +1,102 @@
+{
+  "name": "@antecha/calendar",
+  "version": "0.0.1",
+  "description": "Calendar library",
+  "keywords": [
+    "antecha",
+    "calendar",
+    "react"
+  ],
+  "author": "ante",
+  "license": "ISC",
+  "main": "build/index.js",
+  "module": "build/index.es.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antecha/calendar"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "start": "npm run storybook",
+    "test": "jest --config jest.config.js",
+    "updateSnapshot": "npm test --updateSnapshot",
+    "flow": "flow",
+    "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet",
+    "test:ci": "npm test --ci",
+    "lint:fix": "npm lint --fix",
+    "build": "rollup -c",
+    "build:styleguide": "styleguidist build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-flow": "^7.8.3",
+    "@babel/preset-react": "^7.7.0",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@storybook/addon-actions": "^5.3.14",
+    "@storybook/addon-docs": "^5.3.14",
+    "@storybook/addon-knobs": "^5.3.14",
+    "@storybook/addon-links": "^5.3.14",
+    "@storybook/addon-storysource": "^5.3.14",
+    "@storybook/addon-viewport": "^5.3.14",
+    "@storybook/addons": "^5.3.14",
+    "@storybook/react": "^5.3.14",
+    "@types/jest": "^24.0.25",
+    "@types/lodash": "^4.14.149",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
+    "@types/react-test-renderer": "^16.9.1",
+    "@types/styled-components": "^4.4.1",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
+    "css-loader": "^3.4.1",
+    "eslint": "^6.7.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-flowtype": "^4.6.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "flow-bin": "^0.119.1",
+    "husky": "^4.0.3",
+    "jest": "^24.9.0",
+    "jest-styled-components": "^6.3.4",
+    "less-loader": "^5.0.0",
+    "lodash": "^4.17.15",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^1.19.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-is": "^16.13.0",
+    "react-styleguidist": "^10.2.0",
+    "react-test-renderer": "^16.12.0",
+    "rollup": "^1.26.5",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-flow": "^1.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "style-loader": "^1.0.0",
+    "styled-components": "^4.4.1",
+    "webpack": "^4.41.2"
+  },
+  "peerDependencies": {
+    "react": "^16.x",
+    "react-dom": "^16.x",
+    "styled-components": "^4.x",
+    "lodash": "^4.x"
+  },
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm lint",
+      "pre-push": "npm test:ci"
+    }
+  }
+}

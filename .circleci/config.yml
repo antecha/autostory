@@ -1,0 +1,80 @@
+defaults: &defaults
+  docker:
+    - image: circleci/node:12.13.1
+  working_directory: ~/calendar
+
+aliases:
+  - &save_dependencies
+    key: v0.01-dependencies-{{ checksum "yarn.lock" }}
+    paths:
+      - node_modules
+  - &restore_dependencies
+    keys:
+      - v0.01-dependencies-{{ checksum "yarn.lock" }}
+      - v0.01-dependencies-
+
+version: 2.1
+
+commands:
+
+jobs:
+  install_dependencies:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *restore_dependencies
+      - run: sudo npm install -g yarn@latest
+      - run: npm install
+      - save_cache: *save_dependencies
+
+  test_lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *restore_dependencies
+      - run: npm lint
+
+  test_jest:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *restore_dependencies
+      - run: npm run test:ci
+
+  semantic_release:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *restore_dependencies
+      - run: npm build
+      - run: echo "//npm.pkg.github.com/:_authToken=$GH_TOKEN" > ~/calendar/.npmrc
+      - run: npx semantic-release
+
+workflows:
+  version: 2.1
+
+  development:
+    jobs:
+      - install_dependencies:
+          filters:
+            branches:
+              ignore:
+                - master
+                - preview
+      - test_lint:
+          requires:
+            - install_dependencies
+      - test_jest:
+          requires:
+            - install_dependencies
+
+  publish:
+    jobs:
+      - install_dependencies:
+          filters:
+            branches:
+              only:
+                - master
+      - semantic_release:
+          requires:
+            - install_dependencies
