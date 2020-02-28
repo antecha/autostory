@@ -1,10 +1,10 @@
 {
-  "name": "@antecha/calendar",
+  "name": "@antecha/autostory",
   "version": "0.0.2",
   "description": "Calendar library",
   "keywords": [
     "antecha",
-    "calendar",
+    "autostory",
     "react"
   ],
   "author": "ante",
@@ -13,7 +13,7 @@
   "module": "build/index.es.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/antecha/calendar"
+    "url": "https://github.com/antecha/autostory"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
