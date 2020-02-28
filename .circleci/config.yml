@@ -34,6 +34,13 @@ jobs:
       - restore_cache: *restore_dependencies
       - run: npm run lint
 
+  test_flow_type:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *restore_dependencies
+      - run: npm run flow
+
   test_jest:
     <<: *defaults
     steps:
@@ -48,7 +55,7 @@ jobs:
       - restore_cache: *restore_dependencies
       - run: npm run build
       - run: echo "//npm.pkg.github.com/:_authToken=$GH_TOKEN" > ~/calendar/.npmrc
-      - run: npx auto shipit
+      - run: npx semantic-release
 
 workflows:
   version: 2.1
@@ -62,6 +69,9 @@ workflows:
                 - master
                 - preview
       - test_lint:
+          requires:
+            - install_dependencies
+      - test_flow_type:
           requires:
             - install_dependencies
       - test_jest:
