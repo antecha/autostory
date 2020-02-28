@@ -2,5 +2,5 @@
 .env
 
 # Build output
-/styleguide
+/storybook-static
 /build

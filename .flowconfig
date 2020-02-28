@@ -8,6 +8,8 @@
 [lints]
 
 [options]
+suppress_comment= \\(.\\|\n\\)*\\$flow-disable-line
+server.max_workers=1
 
 [strict]
 
