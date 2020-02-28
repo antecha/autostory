@@ -32,7 +32,7 @@ jobs:
     steps:
       - checkout
       - restore_cache: *restore_dependencies
-      - run: npm lint
+      - run: npm run lint
 
   test_jest:
     <<: *defaults
@@ -46,9 +46,9 @@ jobs:
     steps:
       - checkout
       - restore_cache: *restore_dependencies
-      - run: npm build
+      - run: npm run build
       - run: echo "//npm.pkg.github.com/:_authToken=$GH_TOKEN" > ~/calendar/.npmrc
-      - run: npx semantic-release
+      - run: npx auto shipit
 
 workflows:
   version: 2.1
